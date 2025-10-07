@@ -6,6 +6,8 @@ import os
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # disable GPU (Railway hanya CPU)
 import cv2
 from PIL import Image
 import io
