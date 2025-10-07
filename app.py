@@ -7,7 +7,8 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # disable GPU (Railway hanya CPU)
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 import cv2
 from PIL import Image
 import io
@@ -17,7 +18,7 @@ app = Flask(__name__)
 
 # Konfigurasi
 app.config['SECRET_KEY'] = 'your-secret-key-here-change-in-production'
-app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['UPLOAD_FOLDER'] = '/tmp/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Max 16MB
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
