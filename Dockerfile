@@ -1,9 +1,9 @@
 # Gunakan image Python resmi
 FROM python:3.11-slim
 
-# Install dependensi sistem (libGL dan lain-lain)
+# Install dependensi sistem (libGL, libglib, dsb)
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
@@ -16,5 +16,5 @@ COPY . .
 # Install dependensi Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Jalankan aplikasi dengan Gunicorn
+# Jalankan aplikasi Flask via Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
